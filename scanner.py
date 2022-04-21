@@ -10,13 +10,12 @@ class Scanner:
         self.img = img
 
     def Scan_View(self):
-        print("Scanned")
         image = cv2.imread(self.img) # read the original image
         original = image.copy() # copy the image
 
         image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) # converts the image to greyscale
         thr = threshold_local(image, 11, offset = 10, method = 'gaussian') # threshold
-        image = (image > thr).astype("uint8") * 255 #apply threshold
+        image = (image > thr).astype("uint8") * 255
 
         # # show the original image and the edge detected image
         # cv2.imshow("original", original)
@@ -30,11 +29,7 @@ class Scanner:
         return image
 
 if __name__=="__main__":
-    # Defining the image name
-    img = "33333.jpeg"
 
-    # Calling the scanner class
-    scan = Scanner(img)
-
-    # Scanning the image - B&W scheme
-    scanned_im = scan.Scan_View()
+    img = "image-name.jpeg" # Defining the image name
+    scan = Scanner(img) # Calling the scanner class
+    scanned_im = scan.Scan_View() # Scanning the image - B&W scheme
